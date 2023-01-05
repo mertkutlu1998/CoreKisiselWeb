@@ -1,0 +1,12 @@
+﻿* Deploy
+
+------------------------
+
+Bonus
+
+* Grafikler (Statik-Dinamik)
+* Api ile Projenin Haberleştirilmesi
+* Unit Of Work Design Pattern
+* Elastic Search
+* Docker
+* Ana Final

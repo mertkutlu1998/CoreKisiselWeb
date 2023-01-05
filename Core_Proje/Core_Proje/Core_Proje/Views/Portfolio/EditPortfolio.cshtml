@@ -1,0 +1,52 @@
+﻿@model EntityLayer.Concrete.Portfolio
+
+@{
+    ViewData["Title"] = "EditPortfolio";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("EditPortfolio", "Portfolio", FormMethod.Post))
+{
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-description"> Proje Düzenleme Paneli </p>
+                <form class="forms-sample">
+                    @Html.HiddenFor(x => x.PortfolioID)
+                    <br />
+                    @Html.Label("Proje Başlığı")
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Name)
+                    <br />
+                    <label>Görsel 1</label>
+                    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ImageUrl)
+                    <br />
+                    <label>Görsel2</label>
+                    @Html.TextBoxFor(x => x.ImageUrl2, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ImageUrl2)
+                    <br />
+                    <label>Proje URL</label>
+                    @Html.TextBoxFor(x => x.ProjectUrl, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ProjectUrl)
+                    <br />
+                    <label>Fiyat</label>
+                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Price)
+                    <br />
+                    <label>Tamamlanma Oranı</label>
+                    @Html.TextBoxFor(x => x.Value, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Value)
+                    <br />
+                    <label>Platform</label>
+                    @Html.TextBoxFor(x => x.Platform, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Platform)
+                    <br />
+                    <button class="btn btn-info">Kaydet</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+}
