@@ -12,6 +12,12 @@ namespace BusinessLayer.Concrete
     public class SkillManager : ISkillService
     {
         ISkillDal _skillDal;
+
+        public SkillManager(ISkillDal skillDal)
+        {
+            _skillDal = skillDal;
+        }
+
         public void TAdd(Skill t)
         {
             _skillDal.Insert(t);
