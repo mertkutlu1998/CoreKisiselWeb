@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreKisiselWeb.Controllers
@@ -27,8 +29,21 @@ namespace CoreKisiselWeb.Controllers
         [HttpPost]
         public IActionResult AddPortfolio(Portfolio portfolio) 
         {
-            pm.TAdd(portfolio);
-            return RedirectToAction("Index");
+            PortfolioValidator pv=new PortfolioValidator();
+            ValidationResult results=pv.Validate(portfolio); //portfolio validate kontrol et ona göre işlem yap.
+            if (results.IsValid) //eğer geçerliyse
+            {
+                pm.TAdd(portfolio);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage); //hatalar dönecek
+                }
+            }
+            return View();
         }
         public IActionResult DeletePortfolio(int id) 
         {
