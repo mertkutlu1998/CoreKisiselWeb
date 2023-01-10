@@ -36,5 +36,21 @@ namespace CoreKisiselWeb.Controllers
             em.TDelete(values);
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public IActionResult EditExperience(int id) 
+        {
+            ViewBag.v1 = "Deneyim Düzenleme";
+            ViewBag.v2 = "Deneyim";
+            ViewBag.v3 = "Deneyim Düzenleme";
+            var values= em.TGetByID(id);
+            return View(values);
+        }
+        [HttpPost]
+        public IActionResult EditExperience(Experience experience) 
+        {
+            em.TUpdate(experience);
+            return RedirectToAction("Index");
+        }
+        
     }
 }

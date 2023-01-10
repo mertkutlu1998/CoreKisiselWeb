@@ -1,0 +1,55 @@
+﻿@model EntityLayer.Concrete.Portfolio
+@{
+    ViewData["Title"] = "AddPortfolio";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card-header bg-transparent border-0">
+    <h3 class="text-white mb-0">Proje Ekleme Sayfası</h3>
+</div>
+
+@using (Html.BeginForm("AddPortfolio", "Portfolio", FormMethod.Post))
+{
+    <br />
+    @Html.HiddenFor(x=>x.PortfolioID)
+    <br />
+    @Html.Label("Proje Adı")
+    @Html.TextBoxFor(x=>x.Name,new {@class="form-control"})
+    <br />
+    <label>Görsel 1</label>
+    @Html.TextBoxFor(x=>x.ImageUrl,new {@class="form-control"})
+    <br />
+    <label>Görsel 2</label>
+    @Html.TextBoxFor(x=>x.ImageUrl1,new{@class="form-control"})
+    <br />
+    <label>Proje Url</label>
+    @Html.TextAreaFor(x=>x.ProjectUrl,new{@class="form-control"})
+    <br />
+    <label>Url1</label>
+    @Html.TextAreaFor(x=>x.Image1,new{@class="form-control"})
+    <br />
+    <label>Url2</label>
+    @Html.TextAreaFor(x=>x.Image2,new{@class="form-control"})
+     <br />
+    <label>Url3</label>
+    @Html.TextAreaFor(x=>x.Image3,new{@class="form-control"})
+    <br />
+    <label>Url4</label>
+    @Html.TextAreaFor(x=>x.Image4,new{@class="form-control"})
+    <br />
+    <label>Platform</label>
+    @Html.TextAreaFor(x=>x.Platform,new{@class="form-control"})
+    <br />
+    <label>Price</label>
+    @Html.TextAreaFor(x=>x.Price,new{@class="form-control"})
+    <br />
+    <label>Status</label>
+    @Html.TextAreaFor(x=>x.Status,new{@class="form-control"})
+    <br />
+    <label>Value</label>
+    @Html.TextAreaFor(x=>x.Value,new{@class="form-control"})
+    //uzun mesaj kısmı
+    <br />
+    <button class="btn btn-success">Ekle</button>
+}
+
+
