@@ -10,47 +10,38 @@ namespace CoreKisiselWeb.Controllers
         ExperienceManager em = new ExperienceManager(new EfExperienceDal());
         public IActionResult Index()
         {
-            ViewBag.v1 = "Deneyim Listesi";
-            ViewBag.v2 = "Deneyim";
-            ViewBag.v3 = "Deneyim Listesi";
             var values = em.TGetList();
             return View(values);
         }
         [HttpGet]
-        public IActionResult AddExperience() 
+        public IActionResult AddExperience()
         {
-            ViewBag.v1 = "Deneyim Ekleme";
-            ViewBag.v2 = "Deneyim";
-            ViewBag.v3 = "Deneyim Ekleme";
             return View();
         }
         [HttpPost]
-        public IActionResult AddExperience(Experience experience) 
+        public IActionResult AddExperience(Experience experience)
         {
             em.TAdd(experience);
             return RedirectToAction("Index");
         }
-        public IActionResult DeleteExperience(int id) 
+        public IActionResult DeleteExperience(int id)
         {
             var values = em.TGetByID(id);
             em.TDelete(values);
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public IActionResult EditExperience(int id) 
+        public IActionResult EditExperience(int id)
         {
-            ViewBag.v1 = "Deneyim Düzenleme";
-            ViewBag.v2 = "Deneyim";
-            ViewBag.v3 = "Deneyim Düzenleme";
-            var values= em.TGetByID(id);
+            var values = em.TGetByID(id);
             return View(values);
         }
         [HttpPost]
-        public IActionResult EditExperience(Experience experience) 
+        public IActionResult EditExperience(Experience experience)
         {
             em.TUpdate(experience);
             return RedirectToAction("Index");
         }
-        
+
     }
 }

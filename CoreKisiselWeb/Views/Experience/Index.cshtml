@@ -2,53 +2,50 @@
 @model List<Experience>
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
-<div class="card-header bg-transparent border-0">
-    <h3 class="text-white mb-0">Deneyim Tablosu</h3>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Deneyimler</h4>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Şirket Adı</th>
+                            <th>Yıl</th>
+                            <th>Açıklama</th>
+                            <th>Sil</th>
+                            <th>Güncelle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+
+                            <tr>
+                                <td>@item.ExperienceID</td>
+                                <td>@item.Name</td>
+                                <td>@item.Date</td>
+                                <td>@item.Description</td>
+                                <td><a href="/Experience/DeleteExperience/@item.ExperienceID" class="btn btn-outline-danger">Sil</a></td>
+                                <td><a href="/Experience/EditExperience/@item.ExperienceID" class="btn btn-outline-warning">Güncelle</a></td>
+                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+                <a href="/Experience/AddExperience/" class="btn btn-outline-info">Yeni Deneyim Ekle</a>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="table-responsive">
-    <table class="table align-items-center table-dark table-flush">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col" class="sort" data-sort="name">#</th>
-                <th scope="col" class="sort" data-sort="budget">Name</th>
-                <th scope="col" class="sort" data-sort="status">Date</th>
-                <th scope="col">ImageUrl</th>
-                <th scope="col" class="sort" data-sort="completion">Description</th>
-                <th scope="col">Sil</th>
-                <th scope="col" class="sort" data-sort="completion">Güncelle</th>
-            </tr>
-        </thead>
-        <tbody class="list">
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <th>
-                        @item.ExperienceID
-                    </th>
-                    <td>
-                        @item.Name
 
-                    </td>
-                    <td>
-                        @item.Date
-                    </td>
-                    <td>
-
-                        <img src="@item.ImageUrl" alt="#" />
-
-                    </td>
-                    <td>@item.Description</td>
-                    <td><a href="/Experience/DeleteExperience/@item.ExperienceID" class="btn btn-danger">Sil</a></td>
-                    <td><a href="/Experience/EditExperience/@item.ExperienceID" class="btn btn-warning">Düzenle</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <a href="/Experience/AddExperience/" class="btn btn-primary">Yeni Deneyim Ekle</a>
-</div>
 
 
 

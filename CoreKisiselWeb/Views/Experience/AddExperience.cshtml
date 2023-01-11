@@ -1,33 +1,40 @@
 ﻿@model EntityLayer.Concrete.Experience
 @{
     ViewData["Title"] = "AddExperience";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
-
-
-<div class="card-header bg-transparent border-0">
-    <h3 class="text-white mb-0">Deneyim Ekleme Sayfası</h3>
-</div>
 
 @using (Html.BeginForm("AddExperience", "Experience", FormMethod.Post))
 {
-    <br />
-    @Html.HiddenFor(x=>x.ExperienceID)
-    <br />
-    @Html.Label("Deneyim Adı")
-    @Html.TextBoxFor(x=>x.Name,new {@class="form-control"})
-    <br />
-    @Html.Label("Tarih Bilgisi")
-    @Html.TextBoxFor(x=>x.Date,new {@class="form-control"})
-    <br />
-    @Html.Label("Resim yolu")
-    @Html.TextBoxFor(x=>x.ImageUrl,new{@class="form-control"})
-    <br />
-    <label>Açıklama</label>
-    @Html.TextAreaFor(x=>x.Description,new{@class="form-control"}) //uzun mesaj kısmı
-    <br />
-    <button class="btn btn-success">Ekle</button>
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni Deneyim Ekleme</h4>
+                <form class="forms-sample">
+                    <div class="form-group">
+                        <label>Başlık</label>
+                        <input type="text" class="form-control" name="Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Tarih</label>
+                        <input type="text" class="form-control" name="Date">
+                    </div>
+                    <div class="form-group">
+                        <label>Görsel Url</label>
+                        <input type="text" class="form-control" name="ImageUrl">
+                    </div>
+                    <div class="form-group">
+                        <label>Açıklama</label>
+                        <textarea class="form-control" name="Description" rows="6"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                    <button class="btn btn-dark">İptal</button>
+                </form>
+            </div>
+        </div>
+    </div>
 }
+
 
 
 
