@@ -1,17 +1,17 @@
 ﻿@model EntityLayer.Concrete.Portfolio
 @{
-    ViewData["Title"] = "AddPortfolio";
+    ViewData["Title"] = "EditPortfolio";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <div class="card-header bg-transparent border-0">
-    <h3 class="text-white mb-0">Proje Ekleme Sayfası</h3>
+    <h3 class="text-white mb-0">Deneyim Düzenleme Sayfası</h3>
 </div>
 
-@using (Html.BeginForm("AddPortfolio", "Portfolio", FormMethod.Post))
+@using (Html.BeginForm("EditPortfolio", "Portfolio", FormMethod.Post))
 {
     <br />
     @Html.HiddenFor(x=>x.PortfolioID)
-    <br />
     @Html.Label("Proje Adı")
     @Html.TextBoxFor(x=>x.Name,new {@class="form-control"})
     @Html.ValidationMessageFor(x=>x.Name)
@@ -35,7 +35,7 @@
     <label>Url2</label>
     @Html.TextAreaFor(x=>x.Image2,new{@class="form-control"})
     @Html.ValidationMessageFor(x=>x.Image2)
-     <br />
+    <br />
     <label>Url3</label>
     @Html.TextAreaFor(x=>x.Image3,new{@class="form-control"})
     @Html.ValidationMessageFor(x=>x.Image3)
@@ -59,9 +59,7 @@
     <label>Value</label>
     @Html.TextAreaFor(x=>x.Value,new{@class="form-control"})
     @Html.ValidationMessageFor(x=>x.Value)
-    //uzun mesaj kısmı
     <br />
-    <button class="btn btn-success">Ekle</button>
+    <button class="btn btn-success">Güncelle</button>
 }
-
 

@@ -5,22 +5,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreKisiselWeb.Controllers
 {
-    public class FeatureController : Controller
+    public class AboutController : Controller
     {
-        FeatureManager fm = new FeatureManager(new EfFeatureDal());
+        AboutManager am = new AboutManager(new EfAboutDal());
         [HttpGet]
         public IActionResult Index()
         {
             ViewBag.v1 = "Düzenleme";
-            ViewBag.v2 = "Öne Çıkanlar";
-            ViewBag.v3 = "Öne Çıkan Sayfası";
-            var values = fm.TGetByID(1);
+            ViewBag.v2 = "Hakkımda";
+            ViewBag.v3 = "Hakkımda Düzenleme";
+            var values = am.TGetByID(1);
             return View(values);
         }
         [HttpPost]
-        public IActionResult Index(Feature feature) 
+        public IActionResult Index(About about) 
         {
-            fm.TUpdate(feature);
+            am.TUpdate(about);
             return RedirectToAction("Index","Default");
         }
     }

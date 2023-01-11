@@ -1,0 +1,23 @@
+﻿@model EntityLayer.Concrete.Service
+@{
+    ViewData["Title"] = "AddService";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-header bg-transparent border-0">
+    <h3 class="text-white mb-0">Hizmet Ekleme Sayfası</h3>
+</div>
+
+@using (Html.BeginForm("AddService", "Service", FormMethod.Post))
+{
+    <br />
+    @Html.HiddenFor(x=>x.ServiceID)
+    <br />
+    <label>Hizmet Adı</label>
+    @Html.TextBoxFor(x=>x.Title,new {@class="form-control"})
+    <br />
+    <label>Görsel 1</label>
+    @Html.TextBoxFor(x=>x.ImageUrl,new {@class="form-control"})
+    <br />
+    <button class="btn btn-primary">Ekle</button>
+}

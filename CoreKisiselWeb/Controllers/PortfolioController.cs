@@ -51,5 +51,34 @@ namespace CoreKisiselWeb.Controllers
             pm.TDelete(values);
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public IActionResult EditPortfolio(int id) 
+        {
+            ViewBag.v1 = "Proje Düzenleme";
+            ViewBag.v2 = "Proje";
+            ViewBag.v3 = "Düzenleme";
+            var values = pm.TGetByID(id);
+            return View(values);
+        }
+        [HttpPost]
+        public IActionResult EditPortfolio(Portfolio portfolio)
+        {
+            PortfolioValidator pv = new PortfolioValidator();
+            ValidationResult results= pv.Validate(portfolio);
+
+            if (results.IsValid)  //eğer geçerliyse dogruysa yani
+            {
+                pm.TUpdate(portfolio);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in results.Errors) 
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+        }
     }
 }
