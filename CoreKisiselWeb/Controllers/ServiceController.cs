@@ -4,6 +4,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace CoreKisiselWeb.Controllers
     {
         ServiceManager sm = new ServiceManager(new EfServiceDal());
         ServiceValidator sv = new ServiceValidator();
+
         public IActionResult Index()
         {
             ViewBag.v1 = "Hizmet Listesi";
@@ -33,21 +35,55 @@ namespace CoreKisiselWeb.Controllers
         [HttpPost]
         public IActionResult AddService(Service service)
         {
-            ValidationResult result = sv.Validate(service);
-            if (result.IsValid) //eğer geçerliyse
+            ValidationResult results = sv.Validate(service);
+            if (results.IsValid) //eğer geçerliyse
             {
                 sm.TAdd(service);
                 return RedirectToAction("Index");
             }
             else
             {
-                foreach (var item in result.Errors)
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage); //hatalar dönecek
+                }
+            }
+            return View();
+        }
+        public IActionResult DeleteService(int id)
+        {
+            var values = sm.TGetByID(id);
+            sm.TDelete(values);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult EditService(int id)
+        {
+            ViewBag.v1 = "Hizmet Güncelle";
+            ViewBag.v2 = "Hizmetlerim";
+            ViewBag.v3 = "Hizmet Güncelle";
+            var values = sm.TGetByID(id);
+            return View(values);
+        }
+        [HttpPost]
+        public IActionResult EditService(Service service)
+        {
+            
+            ValidationResult results = sv.Validate(service);
+
+            if (results.IsValid) //eğer geçerliyse(dogruysa)
+            {
+                sm.TUpdate(service);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
             return View();
-
         }
     }
 }
