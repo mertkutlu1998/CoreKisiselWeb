@@ -2,7 +2,7 @@
 @model List<Skill>
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 <div class="card-header bg-transparent border-0">
     <h3 class="text-white mb-0">Yetenek Listesi Tablosu</h3>
@@ -45,6 +45,7 @@
             }
         </tbody>
     </table>
+    <br />
     <a href="/Skill/AddSkill/" class="btn btn-primary">Yeni Yetenek Ekle</a>
 </div>
 

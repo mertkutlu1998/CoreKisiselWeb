@@ -28,5 +28,9 @@ namespace CoreKisiselWeb.Controllers
         {
             return PartialView();
         }
+        public PartialViewResult NewSideBar()
+        {
+            return PartialView();
+        }
     }
 }
