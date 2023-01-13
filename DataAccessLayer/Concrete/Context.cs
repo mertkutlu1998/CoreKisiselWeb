@@ -27,5 +27,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<Testimonial> Testimonials { get; set; } //Referanslar
         public DbSet<User> Users { get; set; }
         public DbSet<UserMessage> UserMessages { get; set; }
+        public DbSet<ToDoList> ToDoLists { get; set; }
     }
 }
