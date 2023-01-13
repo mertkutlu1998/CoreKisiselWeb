@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,10 +7,10 @@ namespace CoreKisiselWeb.ViewComponents.Dashboard
 {
     public class MessageList :ViewComponent
     {
-        MessageManager mm = new MessageManager(new EfMessageDal());
+        UserMessageManager umm = new UserMessageManager(new EfUserMessageDal());
         public IViewComponentResult Invoke() 
         {
-            var values=mm.TGetList();
+            var values = umm.GetUserMessageWithService();
             return View(values);
         }
     }

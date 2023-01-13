@@ -1,11 +1,11 @@
 ﻿@using EntityLayer.Concrete
-@model List<Message>
+@model List<UserMessage>
     <div class="col-md-6 col-xl-4 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <div class="d-flex flex-row justify-content-between">
-                    <h4 class="card-title">Gelen Mesajlar</h4>
-                    <p class="text-muted mb-1 small">Tarih</p>
+                    <h4 class="card-title">Mesajlarım</h4>
+                    <p class="text-muted mb-1 small">Tüm Gelen Mesajlar</p>
                 </div>
                 @foreach (var item in Model)
                 {
@@ -17,7 +17,7 @@
                             <div class="preview-item-content d-flex flex-grow">
                                 <div class="flex-grow">
                                     <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                        <h6 class="preview-subject">@item.Name</h6>
+                                        <h6 class="preview-subject">@item.User.Name</h6>
                                         <p class="text-muted text-small">@item.Date</p>
                                     </div>
                                     <p class="text-muted">@item.Content</p>
